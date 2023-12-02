@@ -10,8 +10,9 @@ import { changePageNumber, deleteSelected } from '../../reducers/dataReducer';
 const Footer = () => {
 
   const res = useSelector((state)=>state.dataReducer)
+  const filterDataLength = useSelector((state=>state.filterReducer.filteredData)).length
   const pageNumber = res.pageNumber;
-  const dataLength = Math.ceil(res.data.length / 10);
+  const dataLength = Math.ceil(filterDataLength/ 10);
   const checkedDataLength = res.checkedData.length;
   const dispatch = useDispatch();
 

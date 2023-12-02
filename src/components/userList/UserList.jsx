@@ -3,19 +3,30 @@ import "./userlist.css"
 import { useDispatch, useSelector } from 'react-redux'
 import UserListItem from '../userListItem/UserListItem'
 import { selectAll } from '../../services/handleSelectedData'
+import { filterData } from '../../services/filterData'
 
 const UserList = () => {
 
 const res = useSelector((state)=>state.dataReducer)
+const filter = useSelector((state)=>state.filterReducer)
+const filteredData = filter.filteredData;
 const dispatch = useDispatch();
 const pageNumber = res.pageNumber;
 const checkedData = res.checkedData;
 const checkBoxRef = useRef();
 const[isCheckedAll, setIsCheckedAll] = useState(false)
 
+
+useEffect(()=>{
+  const searchText = filter.search;
+  const data=res.data;
+  filterData(dispatch,searchText,data);
+},[filter.search,res.data])
+
+
 useEffect(()=>{
   const checkedState = checkBoxRef.current.checked;
-  const pageData = res.data.slice(pageNumber*10-10,pageNumber*10);
+  const pageData = filteredData.slice(pageNumber*10-10,pageNumber*10);
   const checkedPages = res.checkedPages;
   selectAll(dispatch,checkedState,pageNumber,pageData,checkedPages);
 },[isCheckedAll])
@@ -54,9 +65,11 @@ console.log("updated",res.checkedPages,res.checkedData);
                         <p>Loading</p>
                     </div>
                 ): (
-                   res.data.slice(pageNumber*10-10,pageNumber*10).map((item)=>{
-                    return <UserListItem key={item.id} item={item} isCheckedAll={isCheckedAll}/>
-                   })
+                   (filteredData)
+                    .slice(pageNumber*10-10,pageNumber*10)
+                    .map((item)=>{
+                      return <UserListItem key={item.id} item={item} isCheckedAll={isCheckedAll}/>
+                    })
                  )
             }
         </div>
