@@ -63,7 +63,7 @@
 
 
 
-  .edit, .delete, .save{
+  .edit, .delete, .save, .cancel{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -87,4 +87,12 @@
     font-size: 18px;
 
   }
+.cancel{
+  font-size: 17px;
+}
 
+
+.action-container button:disabled{
+  opacity: 0.5; 
+  cursor: not-allowed;
+}

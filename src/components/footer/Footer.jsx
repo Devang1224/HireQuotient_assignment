@@ -5,33 +5,37 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import { useDispatch, useSelector } from 'react-redux';
-import { changePageNumber } from '../../reducers/dataReducer';
+import { changePageNumber, deleteSelected } from '../../reducers/dataReducer';
 
 const Footer = () => {
 
   const res = useSelector((state)=>state.dataReducer)
   const pageNumber = res.pageNumber;
   const dataLength = Math.ceil(res.data.length / 10);
+  const checkedDataLength = res.checkedData.length;
   const dispatch = useDispatch();
 
 
   const handlePageChange = (page)=>{
-    
-   if(page>=1 && page<=dataLength)
-   {
+   if(page>=1 && page<=dataLength){
       dispatch(changePageNumber(page));
-   }
+      }
+  }
 
+  const handleDeleteSelected = ()=>{
+     dispatch(deleteSelected());
   }
 
   return (
     <div className='footer-container'>
       <p>{`${res.checkedData.length} of 46 row(s) selected`}</p>
-      <button className='delete-selected'>
-       Delete Selected
-      </button>
+      {checkedDataLength > 0 && (
+         <button className="delete-selected" onClick={handleDeleteSelected}>
+           Delete Selected
+         </button>
+    )}
       <div className="pagination">
-        <p>Page 1 of 5</p>
+        <p>{`Page ${pageNumber} of ${dataLength}`}</p>
         <div className="pagination-items">
           <button className='first-page' onClick={()=>handlePageChange(1)}><MdKeyboardDoubleArrowLeft/></button>
           <button className='previous-page' onClick={()=>handlePageChange(pageNumber-1)}><MdOutlineKeyboardArrowLeft/></button>

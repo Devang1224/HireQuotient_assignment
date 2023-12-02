@@ -9,6 +9,7 @@ const UserList = () => {
 const res = useSelector((state)=>state.dataReducer)
 const dispatch = useDispatch();
 const pageNumber = res.pageNumber;
+const checkedData = res.checkedData;
 const checkBoxRef = useRef();
 const[isCheckedAll, setIsCheckedAll] = useState(false)
 
@@ -16,21 +17,19 @@ useEffect(()=>{
   const checkedState = checkBoxRef.current.checked;
   const pageData = res.data.slice(pageNumber*10-10,pageNumber*10);
   const checkedPages = res.checkedPages;
-
   selectAll(dispatch,checkedState,pageNumber,pageData,checkedPages);
-  
 },[isCheckedAll])
 
 
 useEffect(()=>{
   const checkedPages = res.checkedPages;
-  if(!checkedPages.includes(pageNumber)){
+  if(!checkedPages.includes(pageNumber) || checkedData.length<=0){
   checkBoxRef.current.checked = false;
   }
   else{
     checkBoxRef.current.checked = true;
   }
-},[pageNumber])
+},[pageNumber,checkedData])
 
 console.log("updated",res.checkedPages,res.checkedData);
 

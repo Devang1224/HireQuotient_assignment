@@ -71,9 +71,17 @@ export const dataSlice = createSlice({
             const pageNo = action.payload.pageNumber;
             const pageData = action.payload.pageData
             const pageDataIds = pageData.map((item) => item.id);
-
             state.checkedPages = state.checkedPages.filter((Num) => Num !== pageNo);
             state.checkedData = state.checkedData.filter((id) => !pageDataIds.includes(id));
+        },
+        deleteItem:(state,action)=>{
+           const id = action.payload.id;
+           state.data = state.data.filter((item)=>item.id!==id);
+        },
+        deleteSelected:(state)=>{
+           state.data = state.data.filter((item)=>!state.checkedData.includes(item.id))
+           state.checkedData = []
+           state.checkedPages = []
         }
     
     }
@@ -86,6 +94,8 @@ export const { dataIsFetching,
                updateData,
                selectedData,
                selectAllPages,
-               removePages
+               removePages,
+               deleteItem,
+               deleteSelected
             } = dataSlice.actions  
 export default dataSlice.reducer;

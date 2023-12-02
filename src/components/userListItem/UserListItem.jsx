@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import "./userlistitem.css"
 import { FaRegEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
+import { ImCancelCircle } from "react-icons/im";
 import { GiSaveArrow } from "react-icons/gi";
-import { selectedData, updateData } from "../../reducers/dataReducer";
+import { deleteItem, selectedData, updateData } from "../../reducers/dataReducer";
 
 
 const UserListItem = ({item,isCheckedAll}) => {
@@ -44,6 +45,7 @@ useEffect(()=>{
     checkBox.current.checked=false;
     setIsChecked(false)
   }
+ 
 
 
 },[checkedData])
@@ -66,6 +68,11 @@ const handleCheckBoxChange = ()=>{
     dispatch(selectedData({checkedState:state,id:item.id}))
     console.log("change");
 }
+
+const handleDeleteItem = ()=>{
+  dispatch(deleteItem({id:item.id}))
+}
+
 
   return (
     <div className={`userlistitem ${isChecked&&"checkedList"}`}>
@@ -105,19 +112,24 @@ const handleCheckBoxChange = ()=>{
          <div className="action-container">
           {
             isEditOpen?(
-              <button className="save" title="Save" onClick={handleEditSave}> 
+              <button className="save" title="Save" disabled={isChecked}  onClick={handleEditSave}> 
                     <GiSaveArrow/>
                </button>
             ):(
-              <button className="edit" title="Edit" onClick={()=>setIsEditOpen(true)}> 
+              <button className="edit" title="Edit" disabled={isChecked}  onClick={()=>setIsEditOpen(true)}> 
                    <FaRegEdit/>
               </button>
             )
           }
            
-            <button className="delete" title="Delete">
+            <button className="delete" title="Delete" disabled={isChecked} onClick={handleDeleteItem}>
               <MdDeleteOutline />
             </button>
+            {
+              isEditOpen && <button className="cancel" title="Cancel" onClick={()=>setIsEditOpen(false)}>
+               <ImCancelCircle />
+              </button>
+             }
          </div>
       </div>
       
