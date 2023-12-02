@@ -1,0 +1,90 @@
+.userlistitem{
+    display: flex;
+    align-items: center;   
+    padding:15px;
+    font-weight: 500;
+    font-size:14px;
+    height: 58px;
+}
+
+.checkedList{
+  background-color: rgba(128, 128, 128, 0.214);
+
+}
+
+.userlistitem:hover{
+  background-color: rgba(128, 128, 128, 0.214);
+}
+
+.userlistitem:not(:last-child){
+    border-bottom:1px solid #d2d8dd; 
+  }
+.checkbox-container{
+    width: 4%;
+}
+
+
+  .userInfo-container{
+    width: 96%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  .userInfo{
+   width: 24%;
+  }
+.userInfo input{
+  padding:5px;
+  border-radius:5px;
+  border:1px solid rgba(100, 97, 97, 0.594);
+}
+
+  .action-container{
+   width: 24%;
+   display: flex;
+   gap:10px;
+  }
+
+  .userInfo-container .role{
+      text-align: center;
+  }
+  .userInfo-container .role .role-item{
+    border:1px solid rgb(3, 185, 3);
+    color:rgb(3, 185, 3);
+    border-radius: 5px;
+    padding:5px;
+  }
+  
+  .userInfo-container .role .admin{
+    border:1px solid rgb(243, 78, 78);
+    color:rgb(243, 78, 78);
+  }
+
+
+
+  .edit, .delete, .save{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+     cursor: pointer;
+     padding: 4px;
+     background-color: white;
+     border:1px solid #d2d8dd; 
+     border-radius:5px;
+  }
+.edit{
+  font-size: 16px;
+
+}
+.save{
+  font-size: 16px;
+  color:rgb(3, 185, 3);
+  border-color:rgb(3, 185, 3);;
+}
+  .delete{
+    color:rgba(245, 42, 42, 0.822);
+    font-size: 18px;
+
+  }
+

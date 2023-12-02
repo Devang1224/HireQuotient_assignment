@@ -1,0 +1,53 @@
+.userlist-container{
+    border: 1px solid #d2d8dd;
+    border-radius: 5px;
+    height: 80%;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    background-color: white;
+    overflow: hidden;
+}
+
+.userlist-title{
+    height: 8%;
+    display: flex;
+    align-items: center;   
+    color:#696e72;
+    border-bottom: 1px solid #d2d8dd;
+    background-color: #FBFBFB;
+    font-weight: 600;
+    padding:15px;
+    font-size:16px;
+}
+.checkbox-container{
+    width: 4%;
+}
+.checkbox-container input{
+  cursor:pointer;
+}
+.userlist-title .titles{
+  width: 96%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.userlist-title .titles>p{
+ width: 24%;
+}
+
+.userlist-title .titles .role{
+    text-align: center;
+}
+
+.userlistitem-container{
+  height: 92%;
+  overflow: auto;
+}
+
+.loader{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

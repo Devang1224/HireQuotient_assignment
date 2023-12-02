@@ -1,23 +1,24 @@
-import logo from './logo.svg';
+import { useEffect } from 'react';
 import './App.css';
+import FilterBar from './components/filters/FilterBar';
+import UserList from './components/userList/UserList';
+import { useDispatch } from 'react-redux';
+import { fetchUserList } from './services/fetchData';
+import Footer from './components/footer/Footer';
 
 function App() {
+
+const dispatch = useDispatch();
+
+  useEffect(()=>{
+    fetchUserList(dispatch)
+  },[dispatch])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <FilterBar/>
+      <UserList/>
+      <Footer/>
     </div>
   );
 }
