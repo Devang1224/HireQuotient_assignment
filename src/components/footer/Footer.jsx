@@ -16,7 +16,7 @@ const Footer = () => {
   const checkedDataLength = res.checkedData.length;
   const dispatch = useDispatch();
 
-
+console.log(pageNumber);
   const handlePageChange = (page)=>{
    if(page>=1 && page<=dataLength){
       dispatch(changePageNumber(page));

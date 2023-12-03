@@ -66,7 +66,6 @@ const handleCheckBoxChange = ()=>{
   setIsChecked(!isChecked);
   const state = !isChecked;
     dispatch(selectedData({checkedState:state,id:item.id}))
-    console.log("change");
 }
 
 const handleDeleteItem = ()=>{

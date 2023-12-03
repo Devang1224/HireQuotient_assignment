@@ -42,7 +42,7 @@ useEffect(()=>{
   }
 },[pageNumber,checkedData])
 
-console.log("updated",res.checkedPages,res.checkedData);
+
 
   return (
     <div className='userlist-container'>
