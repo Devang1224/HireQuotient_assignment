@@ -5,6 +5,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    min-width: 800px;
+    height: 80px;
 }
 
 .footer-container p{

@@ -29,13 +29,14 @@ const Footer = () => {
 
   return (
     <div className='footer-container'>
-      <p>{`${res.checkedData.length} of 46 row(s) selected`}</p>
+      <p>{`${res.checkedData.length} of ${res.data.length} row(s) selected`}</p>
       {checkedDataLength > 0 && (
          <button className="delete-selected" onClick={handleDeleteSelected}>
            Delete Selected
          </button>
     )}
-      <div className="pagination">
+    {
+      res.data.length>0 && (<div className="pagination">
         <p>{`Page ${pageNumber} of ${dataLength}`}</p>
         <div className="pagination-items">
           <button className='first-page' onClick={()=>handlePageChange(1)}><MdKeyboardDoubleArrowLeft/></button>
@@ -49,7 +50,8 @@ const Footer = () => {
           <button className='next-page'onClick={()=>handlePageChange(pageNumber+1)} ><MdOutlineKeyboardArrowRight/></button>
           <button className='last-page' onClick={()=>handlePageChange(dataLength)}><MdKeyboardDoubleArrowRight/></button>
         </div>
-      </div>
+      </div>)
+    } 
     </div>
   )
 }
